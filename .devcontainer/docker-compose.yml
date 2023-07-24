@@ -1,8 +1,9 @@
+version: '3'
 services:
   app:
     build:
-      context: /var/lib/docker/codespacemount/workspace/codespaces
-      dockerfile: .devcontainer/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     command: sleep infinity
     depends_on:
       db:
@@ -13,19 +14,6 @@ services:
         condition: service_started
       redis:
         condition: service_started
-    environment:
-      CODESPACES: "********"
-    labels:
-      ContainerVersion: '13'
-      Type: codespaces
-    network_mode: service:db
-    volumes:
-    - /.codespaces/agent/mount:/.codespaces/bin:rw
-    - /mnt/containerTmp:/tmp:rw
-    - /var/lib/docker/codespacemount/workspace/codespaces:/workspace:cached
-    - /var/lib/docker/codespacemount/workspace:/workspaces:rw
-    - /var/lib/docker/codespacemount/.persistedshare:/workspaces/.codespaces/.persistedshare:rw
-    - /root/.codespaces/shared:/workspaces/.codespaces/shared:rw
   db:
     container_name: db
     environment:
@@ -35,7 +23,7 @@ services:
     image: postgres:12.9
     restart: unless-stopped
     volumes:
-    - /var/lib/docker/codespacemount/workspace/codespaces/.devcontainer/create-db-user.sql:/docker-entrypoint-initdb.d/create-db-user.sql:rw
+    - ./.devcontainer/create-db-user.sql:/docker-entrypoint-initdb.d/create-db-user.sql:rw
     - postgres-data:/var/lib/postgresql/data:rw
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-U", "postgres"]
@@ -70,7 +58,6 @@ services:
     restart: always
     volumes:
     - redis-cache:/data:rw
-version: '3'
 volumes:
   localstack-data: {}
   postgres-data: {}
