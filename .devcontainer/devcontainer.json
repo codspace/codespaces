@@ -1,8 +1,21 @@
 {
-    "dockerComposeFile": ["./docker-compose.yml"],
-    "onCreateCommand": ".devcontainer/on-create.sh",
-    "service": "app",
-    "features": {
-        "ghcr.io/devcontainers/features/node:1": {}
+  "dockerComposeFile": [
+    "./docker-compose.yml"
+  ],
+  "onCreateCommand": ".devcontainer/on-create.sh",
+  "service": "app",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.profiles.linux": {
+      "zsh": {
+        "path": "zsh",
+        "args": [
+          "-l"
+        ]
+      }
     }
+  }
 }
