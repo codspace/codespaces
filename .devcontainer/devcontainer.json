@@ -2,7 +2,7 @@
   "dockerComposeFile": [
     "./docker-compose.yml"
   ],
-  "onCreateCommand": ".devcontainer/on-create.sh",
+  "onCreateCommand": "bash -l .devcontainer/on-create.sh",
   "service": "app",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {}
