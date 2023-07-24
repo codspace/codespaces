@@ -15,6 +15,8 @@ services:
         condition: service_started
       redis:
         condition: service_started
+    volumes:
+      - ..:/workspace:cached
   db:
     container_name: db
     environment:
