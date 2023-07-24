@@ -1,5 +1,5 @@
 {
     "dockerComposeFile": ["./docker-compose.yml"],
-    "onCreateCommand": "sudo apt update && sudo apt install -y python3 python3-pip && npm install -g @devcontainers/cli",
+    "onCreateCommand": ".devcontainer/on-create.sh",
     "service": "app"
 }
