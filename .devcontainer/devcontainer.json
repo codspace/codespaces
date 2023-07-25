@@ -10,7 +10,8 @@
   "onCreateCommand": "bash -l .devcontainer/on-create.sh",
   "service": "app",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {}
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
   "customizations": {
     "vscode": {
