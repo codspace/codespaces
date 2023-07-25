@@ -5,7 +5,10 @@
 sudo apt update -y
 sudo apt install -y python3 python3-pip
 
-npm install -g @devcontainers/cli
+git clone https://github.com/devcontainers/cli  /tmp/devcontainer-cli-src
+cd /tmp/devcontainer-cli-src
+yarn
+yarn compile
 
 LATEST_RELEASE=$(curl -L "https://api.github.com/repos/localstack/localstack-cli/tags" | jq -r '.[0].name' | tr -d 'v')
 wget -q -O /tmp/localstack.tar.gz \
